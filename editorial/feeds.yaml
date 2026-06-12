@@ -1,0 +1,130 @@
+# inini.in — editorial RSS source list (P2.1)
+#
+# LAW (catalog + R4): headlines + links ONLY. Never scrape or reproduce
+# paywalled/article body content. Original commentary only.
+# Maintained editorially; every feed carries a dated HTTP-200 verification.
+# A feed that goes dead or paywalls its RSS gets status: dropped (kept for
+# audit), never silently deleted.
+
+version: 1
+verified_at: "2026-06-12"   # curl -L, UA kreeda-feeds-check/1.0; 200 + >=1 <item>
+usage: headlines-and-links-only   # R4; no body scraping
+audience: >-   # founder, 2026-06-12
+  India-national English only. Educated 15–45: students + working
+  professionals shaping India's next decade. Mix skews tech / startups /
+  education / careers alongside national news.
+
+feeds:
+  # --- publisher feeds ---
+  - id: thehindu-national
+    name: The Hindu — National
+    type: publisher
+    url: https://www.thehindu.com/news/national/feeder/default.rss
+    http: 200
+  - id: toi-top
+    name: Times of India — Top Stories
+    type: publisher
+    url: https://timesofindia.indiatimes.com/rssfeedstopstories.cms
+    http: 200
+  - id: ht-india
+    name: Hindustan Times — India News
+    type: publisher
+    url: https://www.hindustantimes.com/feeds/rss/india-news/rssfeed.xml
+    http: 200
+  - id: ie-india
+    name: Indian Express — India
+    type: publisher
+    url: https://indianexpress.com/section/india/feed/
+    http: 200
+  - id: ndtv-top
+    name: NDTV — Top Stories
+    type: publisher
+    url: https://feeds.feedburner.com/ndtvnews-top-stories
+    http: 200
+  - id: indiatoday-top
+    name: India Today — Top Stories
+    type: publisher
+    url: https://www.indiatoday.in/rss/1206578
+    http: 200
+  - id: livemint-news
+    name: Mint — News
+    type: publisher
+    url: https://www.livemint.com/rss/news
+    http: 200
+  - id: et-top
+    name: Economic Times — Top Stories
+    type: publisher
+    url: https://economictimes.indiatimes.com/rssfeedstopstories.cms
+    http: 200
+  - id: scroll-articles
+    name: Scroll.in — Articles
+    type: publisher
+    url: https://feeds.feedburner.com/ScrollinArticles.rss
+    http: 200
+  - id: inc42
+    name: Inc42 — Startups
+    type: publisher
+    url: https://inc42.com/feed/
+    http: 200
+  - id: yourstory
+    name: YourStory — Startups & Careers
+    type: publisher
+    url: https://yourstory.com/feed
+    http: 200
+  - id: et-tech
+    name: Economic Times — Tech
+    type: publisher
+    url: https://economictimes.indiatimes.com/tech/rssfeeds/13357270.cms
+    http: 200
+  - id: toi-education
+    name: Times of India — Education
+    type: publisher
+    url: https://timesofindia.indiatimes.com/rssfeeds/913168846.cms
+    http: 200
+
+  # --- Google News RSS (en-IN) ---
+  - id: gnews-top-in
+    name: Google News — Top Stories (India)
+    type: google-news
+    url: "https://news.google.com/rss?hl=en-IN&gl=IN&ceid=IN:en"
+    http: 200
+  - id: gnews-nation
+    name: Google News — Nation (India)
+    type: google-news
+    url: "https://news.google.com/rss/headlines/section/topic/NATION?hl=en-IN&gl=IN&ceid=IN:en"
+    http: 200
+  - id: gnews-business
+    name: Google News — Business (India)
+    type: google-news
+    url: "https://news.google.com/rss/headlines/section/topic/BUSINESS?hl=en-IN&gl=IN&ceid=IN:en"
+    http: 200
+  - id: gnews-tech
+    name: Google News — Technology (India)
+    type: google-news
+    url: "https://news.google.com/rss/headlines/section/topic/TECHNOLOGY?hl=en-IN&gl=IN&ceid=IN:en"
+    http: 200
+  - id: gnews-entertainment
+    name: Google News — Entertainment (India)
+    type: google-news
+    url: "https://news.google.com/rss/headlines/section/topic/ENTERTAINMENT?hl=en-IN&gl=IN&ceid=IN:en"
+    http: 200
+  - id: gnews-sports
+    name: Google News — Sports (India)
+    type: google-news
+    url: "https://news.google.com/rss/headlines/section/topic/SPORTS?hl=en-IN&gl=IN&ceid=IN:en"
+    http: 200
+  - id: gnews-science
+    name: Google News — Science (India)
+    type: google-news
+    url: "https://news.google.com/rss/headlines/section/topic/SCIENCE?hl=en-IN&gl=IN&ceid=IN:en"
+    http: 200
+  - id: gnews-startups
+    name: Google News — India Startup (search)
+    type: google-news
+    url: "https://news.google.com/rss/search?q=india+startup&hl=en-IN&gl=IN&ceid=IN:en"
+    http: 200
+
+rejected:
+  - id: thewire
+    url: https://thewire.in/feed
+    reason: "HTTP 200 but zero <item> entries on 2026-06-12 — not a usable feed"
