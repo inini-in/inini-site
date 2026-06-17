@@ -1,0 +1,18 @@
+# Compose config for inini.in — image generation + overlay + publish settings.
+# Consumed by kreeda runner/compose.py + publish.py via ADR-D016 extraction (S21).
+
+header: "inini.in"
+label: "SATIRE"
+repo_owner: "inini-in"
+repo_name: "inini-site"
+content_url_base: "https://inini.in/content"
+gate_copy: "KREEDA GATE P3.4 — approve for inini.in?"
+channel_copy_prefix: "New on inini.in — "
+
+image_styles:
+  - ", Amul hoarding style political cartoon, bright saffron-orange background, bold flat primary colours, thick black outlines, warm cheerful NOT dark NOT dramatic"
+  - ", R.K. Laxman comic strip style, plain warm cream background, flat ink and light watercolour, bold outlines, bright NOT dark NOT moody"
+  - ", Indian political cartoon, bright pastel yellow background, bold cel-shaded flat colours, thick outlines, warm and playful NOT dark NOT military"
+  - ", Amul-style flat illustration, bright golden-yellow background, simple bold shapes, cartoon exaggeration, cheerful warm colours NOT dark NOT dramatic"
+
+no_text_suffix: "; bright warm background (orange/yellow/cream) — NOT dark blue NOT black NOT dark grey NOT dramatic lighting; absolutely NO text, NO words, NO letters, NO numbers, NO signs, NO billboards, NO writing on ANY surface, NO labels, NO captions, NO watermark, NO signature"
