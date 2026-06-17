@@ -1,0 +1,64 @@
+# Editorial prompts for inini.in — inini-specific editorial voice.
+# Consumed by kreeda runner/brain.py via ADR-D016 extraction (S21).
+
+draft: |-
+  Draft a satirical news concept (The Onion style, India-aware, punch-up at the powerful). %s
+  Output JSON ONLY — no prose, no code fence.
+  HEADLINE: max 8 words, absurdist punchline, not a news summary — state the joke directly.
+  image_prompt: write a flat-colour Amul-style cartoon scene that makes the joke VISUALLY OBVIOUS
+  without any text labels; use exaggerated absurd proportions (make the ironic object GIANT,
+  make authority figures tiny and confused); brown-skinned Indian characters; bright warm
+  background (orange or yellow or cream) — NOT dark blue NOT black NOT dramatic lighting;
+  NO text NO signs NO words.
+  {"headline":"...","caption":"one sharp kicker line, not descriptive","alt_text":"...",
+  "image_prompt":"cartoon illustration: [absurdist scene]","label":"SATIRE"}
+
+topic_multi: |-
+  Below are TODAY's real India news headlines. You MUST satirize ONE of these exact
+  stories — do NOT invent a different topic. Pick the most nationally significant and
+  visually satirizable one (skip local city/infrastructure). The image_prompt must
+  depict a scene any Indian viewer instantly recognizes without needing labels —
+  iconic situation over two-person office scenes. Headlines:
+  %s
+
+topic_single: "Topic: %s.\n"
+
+critique: |-
+  You are a ruthless satire editor. In 3 short bullets, critique this draft: (1) is the
+  HEADLINE a short absurdist punchline (max 8 words) or is it a long boring news summary?
+  (2) is the joke sharp and surprising, not just descriptive? (3) is it genuinely India-aware?
+  Name the single biggest weakness. Draft:
+  %s
+
+refine: |-
+  Rewrite this satirical news draft to fix the editor's critique.
+  CRITICAL: keep the SAME news event as the original draft — do NOT switch to a different topic.
+  Only sharpen the headline (max 8 words, absurdist punchline), caption, and image_prompt.
+  image_prompt: flat-colour Amul cartoon; absurd proportions; brown-skinned Indian characters;
+  plain single-colour background; NO text NO signs.
+  Output JSON ONLY, same keys.
+  DRAFT:
+  %s
+  EDITOR CRITIQUE:
+  %s
+
+judge: |-
+  You are a quality judge for an Indian satirical news meme. Score this draft 1-10 on each axis,
+  then give a TOTAL (1-10). Be strict. Axes:
+  (1) GROUNDED: is the satire about a real Indian news event, not an invented topic?
+  (2) HEADLINE: max 8 words, absurdist punchline, not a news summary?
+  (3) IMAGE: does the image_prompt describe a warm-coloured (orange/yellow/cream) flat Amul-style
+  cartoon with exaggerated absurd proportions and NO dark/dramatic/propaganda aesthetic?
+  Reply with JSON only: {"grounded":N,"headline":N,"image":N,"total":N,"fix":"one sentence on biggest weakness"}
+  DRAFT:
+  %s
+
+improve: |-
+  Rewrite this satirical draft to fix the judge's feedback. Keep the SAME real news event.
+  Fix: %s.
+  HEADLINE: max 8 words absurdist punchline.
+  image_prompt: bright warm Amul-style cartoon (orange/yellow/cream background), exaggerated
+  proportions (ironic thing GIANT, officials tiny+confused), NOT dark NOT dramatic.
+  Output JSON only, same keys.
+  DRAFT:
+  %s
