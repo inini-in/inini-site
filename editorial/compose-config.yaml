@@ -1,4 +1,4 @@
-# Compose config for inini.in — image generation + overlay + publish settings.
+# Compose config for inini.in -- image generation + overlay + publish settings.
 # Consumed by kreeda runner/compose.py + publish.py via ADR-D016 extraction (S21).
 
 header: "inini.in"
@@ -6,13 +6,26 @@ label: "SATIRE"
 repo_owner: "inini-in"
 repo_name: "inini-site"
 content_url_base: "https://inini.in/content"
-gate_copy: "KREEDA GATE P3.4 — approve for inini.in?"
-channel_copy_prefix: "New on inini.in — "
+gate_copy: "KREEDA GATE P3.4 -- approve for inini.in?"
+channel_copy_prefix: "New on inini.in -- "
 
+# style_categories: keyed by style_hint from brain draft.
+# Each value is the FLUX style suffix appended to the image_prompt.
+# Replaces one-size-fits-all image_styles for drafts that carry a style_hint.
+style_categories:
+  political: ", caricature-heavy newspaper editorial cartoon, exaggerated politician faces, bold thick ink outlines, flat primary colour washes, plain cream background"
+  corporate: ", flat corporate office parody cartoon, grey-blue cubicle or boardroom background, business-suit characters with exaggerated grins, muted palette with single red accent"
+  sports: ", bold stadium event poster style, dynamic action poses, bright saturated primary colours, crowd silhouettes in background, energetic sports broadcast composition"
+  education: ", Indian school classroom parody, chalkboard green background, students in white uniforms, authority teacher figure, textbook-illustration meets absurdist satire"
+  crime: ", Bollywood masala film poster parody, dramatic diagonal composition, villain and victim archetypes, bold red-black-gold colour scheme, high contrast"
+  social: ", everyday Indian street-life scene, chai stall or neighbourhood backdrop, auto-rickshaw prop, relatable middle-class characters, warm slice-of-life illustration"
+  tech: ", Silicon Valley startup office parody, minimal flat-icon aesthetic, laptop and smartphone props, characters in hoodies, clean white background with pastel accent"
+
+# Fallback styles for drafts without a style_hint (legacy / rotation)
 image_styles:
   - ", Amul hoarding style political cartoon, bright saffron-orange background, bold flat primary colours, thick black outlines, warm cheerful NOT dark NOT dramatic"
   - ", R.K. Laxman comic strip style, plain warm cream background, flat ink and light watercolour, bold outlines, bright NOT dark NOT moody"
   - ", Indian political cartoon, bright pastel yellow background, bold cel-shaded flat colours, thick outlines, warm and playful NOT dark NOT military"
   - ", Amul-style flat illustration, bright golden-yellow background, simple bold shapes, cartoon exaggeration, cheerful warm colours NOT dark NOT dramatic"
 
-no_text_suffix: "; bright warm background (orange/yellow/cream) — NOT dark blue NOT black NOT dark grey NOT dramatic lighting; absolutely NO text, NO words, NO letters, NO numbers, NO signs, NO billboards, NO writing on ANY surface, NO labels, NO captions, NO watermark, NO signature"
+no_text_suffix: "; bright warm background -- NOT dark blue NOT black NOT dark grey NOT dramatic lighting; absolutely NO text, NO words, NO letters, NO numbers, NO signs, NO billboards, NO writing on ANY surface, NO labels, NO captions, NO watermark, NO signature"
