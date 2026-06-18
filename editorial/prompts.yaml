@@ -1,26 +1,35 @@
-# Editorial prompts for inini.in — inini-specific editorial voice.
+# Editorial prompts for inini.in -- inini-specific editorial voice.
 # Consumed by kreeda runner/brain.py via ADR-D016 extraction (S21).
 
 draft: |-
   Draft a satirical news concept (The Onion style, India-aware, punch-up at the powerful). %s
-  Output JSON ONLY — no prose, no code fence.
-  HEADLINE: max 8 words, absurdist punchline, not a news summary — state the joke directly.
-  image_prompt: write a FLUX image prompt for a flat-colour Amul-style cartoon. Rules:
-  (1) Single concrete scene — describe ONE specific action at ONE specific location.
-  (2) ALL main characters from the headline must be visible and physically grounded
-      (standing, sitting, holding something — never floating, never disembodied).
-  (3) No double-meaning objects — do NOT ask for X shaped like Y; just show X or Y.
-  (4) The satire must be readable at a glance without any labels.
-  (5) Brown-skinned Indian characters; bright warm background (orange/yellow/cream);
-      NOT dark NOT dramatic; NO text NO signs NO words NO floating heads.
+  Output JSON ONLY -- no prose, no code fence.
+  HEADLINE: max 8 words, absurdist punchline, not a news summary -- state the joke directly.
+  style_hint: classify the story as ONE of: political | corporate | sports | education | crime | social | tech
+  image_prompt: write a FLUX image prompt matching the style_hint category. Rules:
+  (1) Illustrate the PUNCHLINE (the funny consequence), NOT the setup (the cause).
+  (2) Single concrete scene -- ONE specific action at ONE specific location.
+  (3) ALL main characters visible and physically grounded (standing/sitting/holding -- never floating).
+  (4) No double-meaning objects -- show X or Y, not X shaped like Y.
+  (5) Brown-skinned Indian characters; style and background follow style_hint (see below).
+  (6) NO text NO signs NO words NO floating heads.
+  Style guide per style_hint:
+  - political: caricature-heavy editorial cartoon, cream/white background, thick ink lines
+  - corporate: flat office parody, grey-blue cubicle/boardroom setting, muted palette + red accent
+  - sports: bold stadium poster, bright primary colours, dynamic action poses
+  - education: classroom parody, chalkboard background, school uniforms, textbook-illustration style
+  - crime: Bollywood film poster parody, dramatic diagonal, bold red-black-gold
+  - social: everyday Indian street scene, chai stall or neighbourhood, warm slice-of-life
+  - tech: startup office parody, minimal flat icons, laptops/phones, clean white + pastel accents
   {"headline":"...","caption":"one sharp kicker line, not descriptive","alt_text":"...",
-  "image_prompt":"cartoon illustration: [absurdist scene]","label":"SATIRE"}
+  "image_prompt":"cartoon illustration: [absurdist scene matching style_hint]",
+  "label":"SATIRE","style_hint":"political|corporate|sports|education|crime|social|tech"}
 
 topic_multi: |-
   Below are TODAY's real India news headlines. You MUST satirize ONE of these exact
-  stories — do NOT invent a different topic. Pick the most nationally significant and
+  stories -- do NOT invent a different topic. Pick the most nationally significant and
   visually satirizable one (skip local city/infrastructure). The image_prompt must
-  depict a scene any Indian viewer instantly recognizes without needing labels —
+  depict a scene any Indian viewer instantly recognizes without needing labels --
   iconic situation over two-person office scenes. Headlines:
   %s
 
@@ -35,11 +44,11 @@ critique: |-
 
 refine: |-
   Rewrite this satirical news draft to fix the editor's critique.
-  CRITICAL: keep the SAME news event as the original draft — do NOT switch to a different topic.
+  CRITICAL: keep the SAME news event as the original draft -- do NOT switch to a different topic.
   Only sharpen the headline (max 8 words, absurdist punchline), caption, and image_prompt.
-  image_prompt: flat-colour Amul cartoon; absurd proportions; brown-skinned Indian characters;
-  plain single-colour background; NO text NO signs.
-  Output JSON ONLY, same keys.
+  image_prompt: match the style_hint; absurd proportions; brown-skinned Indian characters;
+  NO text NO signs.
+  Output JSON ONLY, same keys including style_hint.
   DRAFT:
   %s
   EDITOR CRITIQUE:
@@ -50,8 +59,8 @@ judge: |-
   then give a TOTAL (1-10). Be strict. Axes:
   (1) GROUNDED: is the satire about a real Indian news event, not an invented topic?
   (2) HEADLINE: max 8 words, absurdist punchline, not a news summary?
-  (3) IMAGE: does the image_prompt describe a warm-coloured (orange/yellow/cream) flat Amul-style
-  cartoon with exaggerated absurd proportions and NO dark/dramatic/propaganda aesthetic?
+  (3) IMAGE: does the image_prompt illustrate the PUNCHLINE (not the setup), match the
+  style_hint, and avoid dark/dramatic/propaganda aesthetic?
   Reply with JSON only: {"grounded":N,"headline":N,"image":N,"total":N,"fix":"one sentence on biggest weakness"}
   DRAFT:
   %s
@@ -60,8 +69,8 @@ improve: |-
   Rewrite this satirical draft to fix the judge's feedback. Keep the SAME real news event.
   Fix: %s.
   HEADLINE: max 8 words absurdist punchline.
-  image_prompt: bright warm Amul-style cartoon (orange/yellow/cream background), exaggerated
-  proportions (ironic thing GIANT, officials tiny+confused), NOT dark NOT dramatic.
-  Output JSON only, same keys.
+  image_prompt: match the style_hint category; illustrate the punchline not the setup;
+  bright warm colours for the category style; NOT dark NOT dramatic.
+  Output JSON only, same keys including style_hint.
   DRAFT:
   %s
