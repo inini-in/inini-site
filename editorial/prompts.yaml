@@ -5,11 +5,14 @@ draft: |-
   Draft a satirical news concept (The Onion style, India-aware, punch-up at the powerful). %s
   Output JSON ONLY — no prose, no code fence.
   HEADLINE: max 8 words, absurdist punchline, not a news summary — state the joke directly.
-  image_prompt: write a flat-colour Amul-style cartoon scene that makes the joke VISUALLY OBVIOUS
-  without any text labels; use exaggerated absurd proportions (make the ironic object GIANT,
-  make authority figures tiny and confused); brown-skinned Indian characters; bright warm
-  background (orange or yellow or cream) — NOT dark blue NOT black NOT dramatic lighting;
-  NO text NO signs NO words.
+  image_prompt: write a FLUX image prompt for a flat-colour Amul-style cartoon. Rules:
+  (1) Single concrete scene — describe ONE specific action at ONE specific location.
+  (2) ALL main characters from the headline must be visible and physically grounded
+      (standing, sitting, holding something — never floating, never disembodied).
+  (3) No double-meaning objects — do NOT ask for X shaped like Y; just show X or Y.
+  (4) The satire must be readable at a glance without any labels.
+  (5) Brown-skinned Indian characters; bright warm background (orange/yellow/cream);
+      NOT dark NOT dramatic; NO text NO signs NO words NO floating heads.
   {"headline":"...","caption":"one sharp kicker line, not descriptive","alt_text":"...",
   "image_prompt":"cartoon illustration: [absurdist scene]","label":"SATIRE"}
 
