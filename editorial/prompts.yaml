@@ -74,3 +74,16 @@ improve: |-
   Output JSON only, same keys including style_hint.
   DRAFT:
   %s
+
+critique_image: |
+  You write FLUX image prompts for Indian satirical cartoons.
+  Headline: %s
+  Caption: %s
+  Current image_prompt: %s
+
+  Rules for a strong FLUX prompt:
+  (1) Illustrate the PUNCHLINE not the setup — if the joke is 'workers accidentally productive', show confused productive workers, NOT the authority that caused it.
+  (2) All characters visible and physically grounded (no floating objects).
+  (3) Single concrete scene, satire readable at a glance, max 4 elements.
+  (4) The dominant emotion in the scene must match the headline's comedic target.
+  Reply JSON only: {"score":1-10,"improved":"<better prompt, or original if score>=8>"}
